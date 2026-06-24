@@ -1,0 +1,52 @@
+# Git 一页速查手册（自用背诵版）
+## 一、分支操作（你习惯 checkout 写法）
+| 命令 | 一句话用途 |
+| ---- | ---- |
+| `git branch` | 查看本地所有分支 |
+| `git branch -r` | 查看远程所有分支 |
+| `git checkout 分支名` | 切换到已有本地分支 |
+| `git checkout -b 新分支名` | 创建新分支并直接切入 |
+| `git checkout -b 本地分支名 origin/远程分支名` | 拉远程分支生成本地分支并切入 |
+| `git checkout -` | 快速切回上一个所在分支 |
+
+## 二、拉取远端代码两类区分
+| 命令 | 一句话用途 |
+| ---- | ---- |
+| `git fetch origin` | 仅下载远程所有更新，**不修改本地文件** |
+| `git pull` | 拉取当前分支远程代码，自动合并更新本地文件 |
+
+## 三、同步main主干到个人分支（dev/fsh）
+```bash
+git checkout main
+git pull origin main
+git checkout dev/fsh
+git merge main
+# 作用：把最新main代码合并进自己分支，main本身不会被改动
+
+
+## 四、提交 & 推送本地代码到远程
+命令	一句话用途
+git add .	把所有修改加入暂存区
+git commit -m "备注内容"	提交暂存改动到本地仓库
+git push	推送当前本地分支到对应远程分支
+
+## 五、个人分支合并代码到主分支 main
+bash
+运行
+# 1.自己分支提交完改动
+git add .
+git commit -m "功能完成"
+# 2.切main并更新
+git checkout main
+git pull origin main
+# 3.合并个人分支到main
+git merge dev/fsh
+# 4.推送main到远程
+git push origin main
+
+## 六、系统文件夹操作（不属于 Git，终端直接执行）
+表格
+命令	一句话用途
+mkdir 文件夹名	新建文件夹
+Remove-Item -Recurse -Force 文件夹名	删除文件夹及内部所有内容
+New-Item test.txt 新建文件 
